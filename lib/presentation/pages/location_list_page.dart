@@ -56,74 +56,88 @@ class _LocationListPageState extends State<LocationListPage> {
           emptyMessage: l10n.noLocationsFound,
           child: ListView.builder(
             controller: _scrollController,
-            itemCount: provider.locations.length + (provider.isLoadMoreRunning ? 1 : 0),
+            itemCount:
+                provider.locations.length +
+                (provider.isLoadMoreRunning ? 1 : 0),
             itemBuilder: (context, index) {
               // Se é o último item e está carregando mais, mostrar loading
               if (index == provider.locations.length) {
                 return const Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }
 
               final location = provider.locations[index];
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    child: Icon(
-                      Icons.location_on,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  ),
-                  title: Text(
-                    location.name,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.category,
+                child:
+                    ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                            child: Icon(
+                              Icons.location_on,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                          title: Text(
+                            location.name,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.category,
+                                    size: 16,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface.withOpacity(0.7),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    location.type,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 2),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.public,
+                                    size: 16,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface.withOpacity(0.7),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    location.dimension,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios,
                             size: 16,
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                           ),
-                          const SizedBox(width: 4),
-                          Text(
-                            location.type,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 2),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.public,
-                            size: 16,
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            location.dimension,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                ).animate()
-                    .fadeIn(duration: 300.ms, delay: (index * 50).ms)
-                    .slideX(begin: 0.2),
+                        )
+                        .animate()
+                        .fadeIn(delay: 60.ms)
+                        .slideX(begin: 0.1, delay: 60.ms),
               );
             },
           ),

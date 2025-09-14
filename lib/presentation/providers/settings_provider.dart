@@ -12,11 +12,9 @@ class SettingsProvider extends ChangeNotifier {
   static const String _themeKey = 'theme_mode';
   static const String _localeKey = 'locale';
 
-  // Estados privados
   ThemeMode _themeMode = ThemeMode.system;
   Locale _locale = const Locale('pt', 'BR');
 
-  // Getters públicos
   ThemeMode get themeMode => _themeMode;
   Locale get locale => _locale;
 

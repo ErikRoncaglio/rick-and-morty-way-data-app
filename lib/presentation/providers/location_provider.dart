@@ -11,7 +11,6 @@ class LocationProvider extends ChangeNotifier {
   List<LocationEntity> _locations = [];
   String? _errorMessage;
 
-  // Novos estados para paginação
   int _currentPage = 1;
   bool _hasNextPage = true;
   bool _isLoadMoreRunning = false;
@@ -27,7 +26,7 @@ class LocationProvider extends ChangeNotifier {
     _isLoading = true;
     _errorMessage = null;
     _currentPage = 1;
-    _locations.clear(); // Limpar lista para nova busca
+    _locations.clear();
     notifyListeners();
 
     try {
@@ -41,7 +40,6 @@ class LocationProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       _errorMessage = 'Erro ao carregar locais: $e';
       _locations = [];
@@ -73,7 +71,6 @@ class LocationProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       // Em caso de erro, não atualizar a lista
       _errorMessage = 'Erro ao carregar mais locais: $e';

@@ -11,7 +11,6 @@ class EpisodeProvider extends ChangeNotifier {
   List<EpisodeEntity> _episodes = [];
   String? _errorMessage;
 
-  // Novos estados para paginação
   int _currentPage = 1;
   bool _hasNextPage = true;
   bool _isLoadMoreRunning = false;
@@ -27,7 +26,7 @@ class EpisodeProvider extends ChangeNotifier {
     _isLoading = true;
     _errorMessage = null;
     _currentPage = 1;
-    _episodes.clear(); // Limpar lista para nova busca
+    _episodes.clear();
     notifyListeners();
 
     try {
@@ -41,7 +40,6 @@ class EpisodeProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       _errorMessage = 'Erro ao carregar episódios: $e';
       _episodes = [];
@@ -73,7 +71,6 @@ class EpisodeProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       // Em caso de erro, não atualizar a lista
       _errorMessage = 'Erro ao carregar mais episódios: $e';

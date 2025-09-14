@@ -10,9 +10,8 @@ class CharacterProvider extends ChangeNotifier {
   bool _isLoading = false;
   List<CharacterEntity> _characters = [];
   String? _errorMessage;
-  String? _selectedStatus; // Estado para armazenar o filtro selecionado
+  String? _selectedStatus;
 
-  // Novos estados para paginação
   int _currentPage = 1;
   bool _hasNextPage = true;
   bool _isLoadMoreRunning = false;
@@ -30,11 +29,14 @@ class CharacterProvider extends ChangeNotifier {
     _errorMessage = null;
     _selectedStatus = status;
     _currentPage = 1;
-    _characters.clear(); // Limpar lista para nova busca
+    _characters.clear();
     notifyListeners();
 
     try {
-      final response = await getAllCharacters(page: _currentPage, status: status);
+      final response = await getAllCharacters(
+        page: _currentPage,
+        status: status,
+      );
       final List<CharacterEntity> newCharacters = (response['results'] as List)
           .cast<CharacterEntity>();
 
@@ -44,7 +46,6 @@ class CharacterProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       _errorMessage = 'Erro ao carregar personagens: $e';
       _characters = [];
@@ -64,7 +65,10 @@ class CharacterProvider extends ChangeNotifier {
 
     try {
       final nextPage = _currentPage + 1;
-      final response = await getAllCharacters(page: nextPage, status: _selectedStatus);
+      final response = await getAllCharacters(
+        page: nextPage,
+        status: _selectedStatus,
+      );
 
       final List<CharacterEntity> newCharacters = (response['results'] as List)
           .cast<CharacterEntity>();
@@ -76,7 +80,6 @@ class CharacterProvider extends ChangeNotifier {
       // Verificar se há próxima página
       final info = response['info'] as Map<String, dynamic>;
       _hasNextPage = info['next'] != null;
-
     } catch (e) {
       // Em caso de erro, não atualizar a lista
       _errorMessage = 'Erro ao carregar mais personagens: $e';

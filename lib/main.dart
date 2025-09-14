@@ -43,10 +43,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => di.getIt<CharacterProvider>()),
-        ChangeNotifierProvider(create: (context) => di.getIt<LocationProvider>()),
-        ChangeNotifierProvider(create: (context) => di.getIt<EpisodeProvider>()),
-        ChangeNotifierProvider(create: (context) => di.getIt<SettingsProvider>()),
+        ChangeNotifierProvider(
+          create: (context) => di.getIt<CharacterProvider>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.getIt<LocationProvider>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.getIt<EpisodeProvider>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.getIt<SettingsProvider>(),
+        ),
       ],
       child: Consumer<SettingsProvider>(
         builder: (context, settingsProvider, child) {
@@ -55,6 +63,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: settingsProvider.themeMode,
+            debugShowCheckedModeBanner: false,
             locale: settingsProvider.locale,
             localizationsDelegates: const [
               AppLocalizations.delegate,
@@ -62,10 +71,7 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: const [
-              Locale('pt', 'BR'),
-              Locale('en', 'US'),
-            ],
+            supportedLocales: const [Locale('pt', 'BR'), Locale('en', 'US')],
             home: const HomePage(),
           );
         },

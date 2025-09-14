@@ -18,24 +18,29 @@ class _HomePageState extends State<HomePage> {
   late final List<Widget> _pages;
   late final List<String> _titles;
 
+  // Para garantir que a inicialização só ocorra uma vez
+  bool _isInitialized = false;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context)!;
 
-    // Inicializar as páginas
-    _pages = [
-      const CharacterListPage(),
-      const LocationListPage(),
-      const EpisodeListPage(), // Substituindo o placeholder pela página real
-    ];
+    // Esta verificação garante que o código só rode na primeira vez
+    if (!_isInitialized) {
+      final l10n = AppLocalizations.of(context)!;
 
-    // Inicializar os títulos
-    _titles = [
-      l10n.characters,
-      l10n.locations,
-      l10n.episodes,
-    ];
+      // Inicializar as páginas
+      _pages = [
+        const CharacterListPage(),
+        const LocationListPage(),
+        const EpisodeListPage(),
+      ];
+
+      // Inicializar os títulos
+      _titles = [l10n.characters, l10n.locations, l10n.episodes];
+
+      _isInitialized = true;
+    }
   }
 
   void _onItemTapped(int index) {
@@ -46,11 +51,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Para garantir que os títulos sejam atualizados ao trocar de idioma
     final l10n = AppLocalizations.of(context)!;
+    final currentTitles = [l10n.characters, l10n.locations, l10n.episodes];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titles[_selectedIndex]),
+        title: Text(currentTitles[_selectedIndex]),
         centerTitle: true,
         actions: [
           IconButton(
@@ -58,19 +65,14 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsPage(),
-                ),
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
               );
             },
             tooltip: l10n.settings,
           ),
         ],
       ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -90,7 +92,9 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+        unselectedItemColor: Theme.of(
+          context,
+        ).colorScheme.onSurface.withOpacity(0.6),
       ),
     );
   }

@@ -41,11 +41,12 @@ void main() {
           'pages': 42,
           'next': 'https://rickandmortyapi.com/api/character?page=2',
           'prev': null,
-        }
+        },
       };
 
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenAnswer((_) async => mockResponse);
 
       // Act
       await characterProvider.fetchCharacters();
@@ -60,8 +61,9 @@ void main() {
 
     test('deve lidar com erros ao carregar personagens', () async {
       // Arrange
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenThrow(Exception('Erro de conexão'));
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenThrow(Exception('Erro de conexão'));
 
       // Act
       await characterProvider.fetchCharacters();
@@ -70,25 +72,27 @@ void main() {
       expect(characterProvider.isLoading, false);
       expect(characterProvider.characters, isEmpty);
       expect(characterProvider.errorMessage, isNotNull);
-      expect(characterProvider.errorMessage, contains('Erro ao carregar personagens'));
+      expect(
+        characterProvider.errorMessage,
+        contains('Erro ao carregar personagens'),
+      );
     });
 
     test('deve resetar estado ao iniciar nova busca', () async {
       // Arrange
       final mockResponse = {
         'results': <CharacterEntity>[],
-        'info': {
-          'count': 0,
-          'pages': 1,
-          'next': null,
-          'prev': null,
-        }
+        'info': {'count': 0, 'pages': 1, 'next': null, 'prev': null},
       };
 
-      when(mockGetAllCharacters(page: anyNamed('page'), status: anyNamed('status')))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockGetAllCharacters(
+          page: anyNamed('page'),
+          status: anyNamed('status'),
+        ),
+      ).thenAnswer((_) async => mockResponse);
 
-      // Primeiro, simular um estado com dados
+      // Simular um estado com dados
       await characterProvider.fetchCharacters();
 
       // Act - Nova busca deve resetar o estado
@@ -130,7 +134,7 @@ void main() {
           'pages': 42,
           'next': 'https://rickandmortyapi.com/api/character?page=2',
           'prev': null,
-        }
+        },
       };
 
       final secondPageResponse = {
@@ -140,15 +144,17 @@ void main() {
           'pages': 42,
           'next': 'https://rickandmortyapi.com/api/character?page=3',
           'prev': 'https://rickandmortyapi.com/api/character?page=1',
-        }
+        },
       };
 
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async => firstPageResponse);
-      when(mockGetAllCharacters(page: 2, status: null))
-          .thenAnswer((_) async => secondPageResponse);
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenAnswer((_) async => firstPageResponse);
+      when(
+        mockGetAllCharacters(page: 2, status: null),
+      ).thenAnswer((_) async => secondPageResponse);
 
-      // Primeiro carregar a primeira página
+      // Carregar a primeira página
       await characterProvider.fetchCharacters();
       final initialLength = characterProvider.characters.length;
 
@@ -157,7 +163,10 @@ void main() {
 
       // Assert
       expect(characterProvider.isLoadMoreRunning, false);
-      expect(characterProvider.characters.length, initialLength + secondPageCharacters.length);
+      expect(
+        characterProvider.characters.length,
+        initialLength + secondPageCharacters.length,
+      );
       expect(characterProvider.currentPage, 2);
       expect(characterProvider.hasNextPage, true);
     });
@@ -166,16 +175,12 @@ void main() {
       // Arrange
       final mockResponse = {
         'results': <CharacterEntity>[],
-        'info': {
-          'count': 1,
-          'pages': 1,
-          'next': null,
-          'prev': null,
-        }
+        'info': {'count': 1, 'pages': 1, 'next': null, 'prev': null},
       };
 
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenAnswer((_) async => mockResponse);
 
       await characterProvider.fetchCharacters();
 
@@ -204,13 +209,15 @@ void main() {
           'pages': 42,
           'next': 'https://rickandmortyapi.com/api/character?page=2',
           'prev': null,
-        }
+        },
       };
 
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async => firstPageResponse);
-      when(mockGetAllCharacters(page: 2, status: null))
-          .thenThrow(Exception('Erro de conexão'));
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenAnswer((_) async => firstPageResponse);
+      when(
+        mockGetAllCharacters(page: 2, status: null),
+      ).thenThrow(Exception('Erro de conexão'));
 
       await characterProvider.fetchCharacters();
       final initialLength = characterProvider.characters.length;
@@ -220,8 +227,14 @@ void main() {
 
       // Assert
       expect(characterProvider.isLoadMoreRunning, false);
-      expect(characterProvider.characters.length, initialLength); // Lista não deve mudar
-      expect(characterProvider.errorMessage, contains('Erro ao carregar mais personagens'));
+      expect(
+        characterProvider.characters.length,
+        initialLength,
+      ); // Lista não deve mudar
+      expect(
+        characterProvider.errorMessage,
+        contains('Erro ao carregar mais personagens'),
+      );
     });
   });
 
@@ -243,13 +256,15 @@ void main() {
         'info': {
           'count': 399,
           'pages': 20,
-          'next': 'https://rickandmortyapi.com/api/character?page=2&status=alive',
+          'next':
+              'https://rickandmortyapi.com/api/character?page=2&status=alive',
           'prev': null,
-        }
+        },
       };
 
-      when(mockGetAllCharacters(page: 1, status: 'Alive'))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockGetAllCharacters(page: 1, status: 'Alive'),
+      ).thenAnswer((_) async => mockResponse);
 
       // Act
       await characterProvider.filterCharacters('Alive');
@@ -287,11 +302,12 @@ void main() {
           'pages': 42,
           'next': 'https://rickandmortyapi.com/api/character?page=2',
           'prev': null,
-        }
+        },
       };
 
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockGetAllCharacters(page: 1, status: null),
+      ).thenAnswer((_) async => mockResponse);
 
       // Act
       await characterProvider.filterCharacters(null);
@@ -318,12 +334,11 @@ void main() {
     test('deve atualizar isLoading durante fetchCharacters', () async {
       // Arrange
       bool loadingDuringCall = false;
-      when(mockGetAllCharacters(page: 1, status: null))
-          .thenAnswer((_) async {
+      when(mockGetAllCharacters(page: 1, status: null)).thenAnswer((_) async {
         loadingDuringCall = characterProvider.isLoading;
         return {
           'results': <CharacterEntity>[],
-          'info': {'next': null}
+          'info': {'next': null},
         };
       });
 

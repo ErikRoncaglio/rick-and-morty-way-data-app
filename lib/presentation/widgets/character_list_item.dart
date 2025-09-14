@@ -56,9 +56,9 @@ class CharacterListItem extends StatelessWidget {
           ),
           title: Text(
             character.name,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,10 +93,7 @@ class CharacterListItem extends StatelessWidget {
           isThreeLine: true,
         ),
       ),
-    )
-        .animate()
-        .fadeIn(delay: (60 * index).ms, duration: 300.ms)
-        .slideX(begin: -0.1, end: 0, curve: Curves.easeOut);
+    ).animate().fadeIn(delay: 60.ms).slideX(begin: 0.1, delay: 60.ms);
   }
 
   Color _getStatusColor(String status) {
