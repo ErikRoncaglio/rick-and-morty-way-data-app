@@ -1,0 +1,18 @@
+{
+  "appTitle": "Rick and Morty",
+  "characterListTitle": "Rick and Morty Characters",
+  "characterDetails": "Character Details",
+  "characters": "Characters",
+  "locations": "Locations",
+  "episodes": "Episodes",
+  "loading": "Loading...",
+  "errorLoadingCharacters": "Error loading characters",
+  "tryAgain": "Try Again",
+  "noCharactersFound": "No characters found",
+  "species": "Species",
+  "status": "Status",
+  "alive": "Alive",
+  "dead": "Dead",
+  "unknown": "Unknown",
+  "name": "Name"
+}

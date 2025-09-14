@@ -1,0 +1,19 @@
+{
+  "appTitle": "Rick and Morty",
+  "characterListTitle": "Personagens Rick and Morty",
+  "characterDetails": "Detalhes do Personagem",
+  "characters": "Personagens",
+  "locations": "Locais",
+  "episodes": "Episódios",
+  "loading": "Carregando...",
+  "errorLoadingCharacters": "Erro ao carregar personagens",
+  "tryAgain": "Tentar Novamente",
+  "noCharactersFound": "Nenhum personagem encontrado",
+  "species": "Espécie",
+  "status": "Status",
+  "alive": "Vivo",
+  "dead": "Morto",
+  "unknown": "Desconhecido",
+  "name": "Nome"
+}
+
