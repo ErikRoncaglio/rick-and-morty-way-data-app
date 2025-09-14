@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
-import '../models/character_model.dart';
 
 abstract class CharacterRemoteDataSource {
-  Future<List<CharacterModel>> getCharacters({String? status});
+  Future<Map<String, dynamic>> getCharacters({int page = 1, String? status});
 }
 
 class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
@@ -11,20 +10,19 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   CharacterRemoteDataSourceImpl(this.dio);
 
   @override
-  Future<List<CharacterModel>> getCharacters({String? status}) async {
+  Future<Map<String, dynamic>> getCharacters({int page = 1, String? status}) async {
     try {
-      String url = 'https://rickandmortyapi.com/api/character';
+      String url = 'https://rickandmortyapi.com/api/character?page=$page';
 
       // Adicionar parâmetro de status se fornecido
       if (status != null && status.isNotEmpty) {
-        url += '?status=$status';
+        url += '&status=$status';
       }
 
       final response = await dio.get(url);
 
       if (response.statusCode == 200) {
-        final List<dynamic> results = response.data['results'];
-        return results.map((json) => CharacterModel.fromJson(json)).toList();
+        return response.data as Map<String, dynamic>;
       } else {
         throw Exception('Failed to load characters');
       }

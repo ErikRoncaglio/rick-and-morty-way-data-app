@@ -5,8 +5,7 @@ class GetAllLocations {
   final LocationRepository repository;
   GetAllLocations(this.repository);
 
-  Future<List<LocationEntity>> call() async {
-    return await repository.getLocations();
+  Future<Map<String, dynamic>> call({int page = 1}) async {
+    return await repository.getLocations(page: page);
   }
 }
-

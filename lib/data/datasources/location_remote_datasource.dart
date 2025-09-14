@@ -1,22 +1,21 @@
 import 'package:dio/dio.dart';
-import '../models/location_model.dart';
 
 abstract class LocationRemoteDataSource {
-  Future<List<LocationModel>> getLocations();
+  Future<Map<String, dynamic>> getLocations({int page = 1});
 }
 
 class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
   final Dio dio;
 
   LocationRemoteDataSourceImpl(this.dio);
+
   @override
-  Future<List<LocationModel>> getLocations() async {
+  Future<Map<String, dynamic>> getLocations({int page = 1}) async {
     try {
-      final response = await dio.get('https://rickandmortyapi.com/api/location');
+      final response = await dio.get('https://rickandmortyapi.com/api/location?page=$page');
 
       if (response.statusCode == 200) {
-        final List<dynamic> results = response.data['results'];
-        return results.map((json) => LocationModel.fromJson(json)).toList();
+        return response.data as Map<String, dynamic>;
       } else {
         throw Exception('Failed to load locations');
       }
@@ -25,4 +24,3 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
     }
   }
 }
-

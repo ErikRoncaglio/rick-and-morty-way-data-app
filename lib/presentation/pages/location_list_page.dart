@@ -13,13 +13,33 @@ class LocationListPage extends StatefulWidget {
 }
 
 class _LocationListPageState extends State<LocationListPage> {
+  late ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+
+    // Adicionar listener para scroll infinito
+    _scrollController.addListener(_onScroll);
+
     // Buscar locais ao inicializar a página
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<LocationProvider>().fetchLocations();
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.extentAfter < 300) {
+      // Quando está próximo do final da lista, carregar mais
+      context.read<LocationProvider>().loadMoreLocations();
+    }
   }
 
   @override
@@ -35,8 +55,19 @@ class _LocationListPageState extends State<LocationListPage> {
           isEmpty: provider.locations.isEmpty,
           emptyMessage: l10n.noLocationsFound,
           child: ListView.builder(
-            itemCount: provider.locations.length,
+            controller: _scrollController,
+            itemCount: provider.locations.length + (provider.isLoadMoreRunning ? 1 : 0),
             itemBuilder: (context, index) {
+              // Se é o último item e está carregando mais, mostrar loading
+              if (index == provider.locations.length) {
+                return const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+
               final location = provider.locations[index];
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -81,23 +112,19 @@ class _LocationListPageState extends State<LocationListPage> {
                             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                           ),
                           const SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              location.dimension,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          Text(
+                            location.dimension,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
                       ),
                     ],
                   ),
-                  isThreeLine: true,
-                ),
-              )
-                  .animate()
-                  .fadeIn(delay: (60 * index).ms, duration: 300.ms)
-                  .slideX(begin: -0.1, end: 0, curve: Curves.easeOut);
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                ).animate()
+                    .fadeIn(duration: 300.ms, delay: (index * 50).ms)
+                    .slideX(begin: 0.2),
+              );
             },
           ),
         );

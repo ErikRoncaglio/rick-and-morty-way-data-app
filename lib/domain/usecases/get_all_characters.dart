@@ -6,7 +6,7 @@ class GetAllCharacters {
 
   GetAllCharacters(this.repository);
 
-  Future<List<CharacterEntity>> call({String? status}) async {
-    return await repository.getCharacters(status: status);
+  Future<Map<String, dynamic>> call({int page = 1, String? status}) async {
+    return await repository.getCharacters(page: page, status: status);
   }
 }

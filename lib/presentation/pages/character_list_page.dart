@@ -14,13 +14,33 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class _CharacterListPageState extends State<CharacterListPage> {
+  late ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+
+    // Adicionar listener para scroll infinito
+    _scrollController.addListener(_onScroll);
+
     // Buscar personagens ao inicializar a página
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CharacterProvider>().fetchCharacters();
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.extentAfter < 300) {
+      // Quando está próximo do final da lista, carregar mais
+      context.read<CharacterProvider>().loadMoreCharacters();
+    }
   }
 
   @override
@@ -82,8 +102,20 @@ class _CharacterListPageState extends State<CharacterListPage> {
                 isEmpty: provider.characters.isEmpty,
                 emptyMessage: l10n.noCharactersFound,
                 child: ListView.builder(
-                  itemCount: provider.characters.length,
+                  controller: _scrollController,
+                  itemCount: provider.characters.length +
+                      (provider.isLoadMoreRunning ? 1 : 0),
                   itemBuilder: (context, index) {
+                    // Se é o último item e está carregando mais, mostrar loading
+                    if (index == provider.characters.length) {
+                      return const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+
                     final character = provider.characters[index];
                     return CharacterListItem(
                       character: character,

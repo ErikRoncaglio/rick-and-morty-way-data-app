@@ -12,25 +12,76 @@ class CharacterProvider extends ChangeNotifier {
   String? _errorMessage;
   String? _selectedStatus; // Estado para armazenar o filtro selecionado
 
+  // Novos estados para paginação
+  int _currentPage = 1;
+  bool _hasNextPage = true;
+  bool _isLoadMoreRunning = false;
+
   bool get isLoading => _isLoading;
   List<CharacterEntity> get characters => _characters;
   String? get errorMessage => _errorMessage;
   String? get selectedStatus => _selectedStatus;
+  int get currentPage => _currentPage;
+  bool get hasNextPage => _hasNextPage;
+  bool get isLoadMoreRunning => _isLoadMoreRunning;
 
   Future<void> fetchCharacters({String? status}) async {
     _isLoading = true;
     _errorMessage = null;
     _selectedStatus = status;
+    _currentPage = 1;
+    _characters.clear(); // Limpar lista para nova busca
     notifyListeners();
 
     try {
-      _characters = await getAllCharacters(status: status);
+      final response = await getAllCharacters(page: _currentPage, status: status);
+      final List<CharacterEntity> newCharacters = (response['results'] as List)
+          .cast<CharacterEntity>();
+
+      _characters = newCharacters;
       _errorMessage = null;
+
+      // Verificar se há próxima página
+      final info = response['info'] as Map<String, dynamic>;
+      _hasNextPage = info['next'] != null;
+
     } catch (e) {
       _errorMessage = 'Erro ao carregar personagens: $e';
       _characters = [];
+      _hasNextPage = false;
     } finally {
       _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> loadMoreCharacters() async {
+    // Só executar se há próxima página e não está carregando
+    if (!_hasNextPage || _isLoadMoreRunning) return;
+
+    _isLoadMoreRunning = true;
+    notifyListeners();
+
+    try {
+      final nextPage = _currentPage + 1;
+      final response = await getAllCharacters(page: nextPage, status: _selectedStatus);
+
+      final List<CharacterEntity> newCharacters = (response['results'] as List)
+          .cast<CharacterEntity>();
+
+      // Adicionar novos personagens à lista existente
+      _characters.addAll(newCharacters);
+      _currentPage = nextPage;
+
+      // Verificar se há próxima página
+      final info = response['info'] as Map<String, dynamic>;
+      _hasNextPage = info['next'] != null;
+
+    } catch (e) {
+      // Em caso de erro, não atualizar a lista
+      _errorMessage = 'Erro ao carregar mais personagens: $e';
+    } finally {
+      _isLoadMoreRunning = false;
       notifyListeners();
     }
   }
