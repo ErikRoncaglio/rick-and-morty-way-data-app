@@ -120,11 +120,14 @@ class _LocationListPageState extends State<LocationListPage> {
                                     ).colorScheme.onSurface.withOpacity(0.7),
                                   ),
                                   const SizedBox(width: 4),
-                                  Text(
-                                    location.dimension,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
+                                  Flexible(
+                                    child: Text(
+                                      location.dimension,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodyMedium,
+                                    ),
                                   ),
                                 ],
                               ),
