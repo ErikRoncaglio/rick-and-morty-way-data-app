@@ -112,4 +112,8 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get generalInformation => 'Informações Gerais';
+
+  @override
+  String get settingsDescription =>
+      'As configurações são salvas automaticamente e aplicadas imediatamente.';
 }

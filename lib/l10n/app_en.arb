@@ -33,5 +33,6 @@
   "male": "Male",
   "female": "Female",
   "genderless": "Genderless",
-  "generalInformation": "General Information"
+  "generalInformation": "General Information",
+  "settingsDescription" : "Settings are saved automatically and applied immediately."
 }

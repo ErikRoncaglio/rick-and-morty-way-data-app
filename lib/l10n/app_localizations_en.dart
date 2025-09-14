@@ -112,4 +112,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get generalInformation => 'General Information';
+
+  @override
+  String get settingsDescription =>
+      'Settings are saved automatically and applied immediately.';
 }

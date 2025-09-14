@@ -33,5 +33,6 @@
   "male": "Masculino",
   "female": "Feminino",
   "genderless": "Sem Gênero",
-  "generalInformation": "Informações Gerais"
+  "generalInformation": "Informações Gerais",
+  "settingsDescription" : "As configurações são salvas automaticamente e aplicadas imediatamente."
 }

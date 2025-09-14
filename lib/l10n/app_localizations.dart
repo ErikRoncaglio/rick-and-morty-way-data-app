@@ -307,6 +307,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Informações Gerais'**
   String get generalInformation;
+
+  /// No description provided for @settingsDescription.
+  ///
+  /// In pt, this message translates to:
+  /// **'As configurações são salvas automaticamente e aplicadas imediatamente.'**
+  String get settingsDescription;
 }
 
 class _AppLocalizationsDelegate
