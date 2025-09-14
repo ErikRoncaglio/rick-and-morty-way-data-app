@@ -134,6 +134,12 @@ abstract class AppLocalizations {
   /// **'Episódios'**
   String get episodes;
 
+  /// No description provided for @settings.
+  ///
+  /// In pt, this message translates to:
+  /// **'Configurações'**
+  String get settings;
+
   /// No description provided for @loading.
   ///
   /// In pt, this message translates to:
@@ -157,6 +163,60 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Nenhum personagem encontrado'**
   String get noCharactersFound;
+
+  /// No description provided for @noLocationsFound.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum local encontrado'**
+  String get noLocationsFound;
+
+  /// No description provided for @noEpisodesFound.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum episódio encontrado'**
+  String get noEpisodesFound;
+
+  /// No description provided for @theme.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tema'**
+  String get theme;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sistema'**
+  String get themeSystem;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In pt, this message translates to:
+  /// **'Claro'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In pt, this message translates to:
+  /// **'Escuro'**
+  String get themeDark;
+
+  /// No description provided for @language.
+  ///
+  /// In pt, this message translates to:
+  /// **'Idioma'**
+  String get language;
+
+  /// No description provided for @languagePortuguese.
+  ///
+  /// In pt, this message translates to:
+  /// **'Português'**
+  String get languagePortuguese;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In pt, this message translates to:
+  /// **'Inglês'**
+  String get languageEnglish;
 
   /// No description provided for @species.
   ///
@@ -199,54 +259,6 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Todos'**
   String get all;
-
-  /// No description provided for @settings.
-  ///
-  /// In pt, this message translates to:
-  /// **'Configurações'**
-  String get settings;
-
-  /// No description provided for @theme.
-  ///
-  /// In pt, this message translates to:
-  /// **'Tema'**
-  String get theme;
-
-  /// No description provided for @language.
-  ///
-  /// In pt, this message translates to:
-  /// **'Idioma'**
-  String get language;
-
-  /// No description provided for @themeSystem.
-  ///
-  /// In pt, this message translates to:
-  /// **'Sistema'**
-  String get themeSystem;
-
-  /// No description provided for @themeLight.
-  ///
-  /// In pt, this message translates to:
-  /// **'Claro'**
-  String get themeLight;
-
-  /// No description provided for @themeDark.
-  ///
-  /// In pt, this message translates to:
-  /// **'Escuro'**
-  String get themeDark;
-
-  /// No description provided for @languagePortuguese.
-  ///
-  /// In pt, this message translates to:
-  /// **'Português'**
-  String get languagePortuguese;
-
-  /// No description provided for @languageEnglish.
-  ///
-  /// In pt, this message translates to:
-  /// **'English'**
-  String get languageEnglish;
 }
 
 class _AppLocalizationsDelegate

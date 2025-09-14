@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import '../providers/character_provider.dart';
 import '../widgets/character_list_item.dart';
+import '../widgets/view_state_widget.dart';
 import '../../l10n/app_localizations.dart';
 
 class CharacterListPage extends StatefulWidget {
@@ -74,58 +75,22 @@ class _CharacterListPageState extends State<CharacterListPage> {
         Expanded(
           child: Consumer<CharacterProvider>(
             builder: (context, provider, child) {
-              if (provider.isLoading) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
-              }
-
-              if (provider.errorMessage != null) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.error_outline,
-                        size: 64,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        l10n.errorLoadingCharacters,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () => provider.fetchCharacters(),
-                        child: Text(l10n.tryAgain),
-                      ),
-                    ],
-                  ),
-                );
-              }
-
-              if (provider.characters.isEmpty) {
-                return Center(
-                  child: Text(
-                    l10n.noCharactersFound,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                );
-              }
-
-              return ListView.builder(
-                itemCount: provider.characters.length,
-                itemBuilder: (context, index) {
-                  final character = provider.characters[index];
-                  return CharacterListItem(
-                    character: character,
-                    index: index,
-                  );
-                },
+              return ViewStateWidget(
+                isLoading: provider.isLoading,
+                errorMessage: provider.errorMessage,
+                onRetry: () => provider.fetchCharacters(),
+                isEmpty: provider.characters.isEmpty,
+                emptyMessage: l10n.noCharactersFound,
+                child: ListView.builder(
+                  itemCount: provider.characters.length,
+                  itemBuilder: (context, index) {
+                    final character = provider.characters[index];
+                    return CharacterListItem(
+                      character: character,
+                      index: index,
+                    );
+                  },
+                ),
               );
             },
           ),

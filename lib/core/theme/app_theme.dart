@@ -37,11 +37,9 @@ class AppTheme {
           color: Colors.white,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         color: Colors.white,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -49,9 +47,7 @@ class AppTheme {
           backgroundColor: primaryBlue,
           foregroundColor: Colors.white,
           elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
       listTileTheme: const ListTileThemeData(
@@ -68,14 +64,8 @@ class AppTheme {
           fontWeight: FontWeight.bold,
           color: darkGrey,
         ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          color: darkGrey,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          color: darkGrey,
-        ),
+        bodyLarge: TextStyle(fontSize: 16, color: darkGrey),
+        bodyMedium: TextStyle(fontSize: 14, color: darkGrey),
       ),
     );
   }
@@ -107,11 +97,9 @@ class AppTheme {
           color: neonGreen,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         color: darkGrey,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -119,9 +107,7 @@ class AppTheme {
           backgroundColor: neonGreen,
           foregroundColor: darkPurple,
           elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
       listTileTheme: const ListTileThemeData(
@@ -138,14 +124,8 @@ class AppTheme {
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          color: Colors.white,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          color: Colors.white70,
-        ),
+        bodyLarge: TextStyle(fontSize: 16, color: Colors.white),
+        bodyMedium: TextStyle(fontSize: 14, color: Colors.white70),
       ),
     );
   }

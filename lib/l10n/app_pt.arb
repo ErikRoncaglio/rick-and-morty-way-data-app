@@ -5,15 +5,25 @@
   "characters": "Personagens",
   "locations": "Locais",
   "episodes": "Episódios",
+  "settings": "Configurações",
   "loading": "Carregando...",
   "errorLoadingCharacters": "Erro ao carregar personagens",
   "tryAgain": "Tentar Novamente",
   "noCharactersFound": "Nenhum personagem encontrado",
+  "noLocationsFound": "Nenhum local encontrado",
+  "noEpisodesFound": "Nenhum episódio encontrado",
+  "theme": "Tema",
+  "themeSystem": "Sistema",
+  "themeLight": "Claro",
+  "themeDark": "Escuro",
+  "language": "Idioma",
+  "languagePortuguese": "Português",
+  "languageEnglish": "Inglês",
   "species": "Espécie",
   "status": "Status",
   "alive": "Vivo",
   "dead": "Morto",
   "unknown": "Desconhecido",
-  "name": "Nome"
+  "name": "Nome",
+  "all": "Todos"
 }
-

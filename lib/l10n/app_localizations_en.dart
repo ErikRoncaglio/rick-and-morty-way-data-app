@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get episodes => 'Episodes';
 
   @override
+  String get settings => 'Settings';
+
+  @override
   String get loading => 'Loading...';
 
   @override
@@ -37,6 +40,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noCharactersFound => 'No characters found';
+
+  @override
+  String get noLocationsFound => 'No locations found';
+
+  @override
+  String get noEpisodesFound => 'No episodes found';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get languagePortuguese => 'Portuguese';
+
+  @override
+  String get languageEnglish => 'English';
 
   @override
   String get species => 'Species';
@@ -58,28 +88,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get all => 'All';
-
-  @override
-  String get settings => 'Settings';
-
-  @override
-  String get theme => 'Theme';
-
-  @override
-  String get language => 'Language';
-
-  @override
-  String get themeSystem => 'System';
-
-  @override
-  String get themeLight => 'Light';
-
-  @override
-  String get themeDark => 'Dark';
-
-  @override
-  String get languagePortuguese => 'Português';
-
-  @override
-  String get languageEnglish => 'English';
 }
