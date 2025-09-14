@@ -88,4 +88,28 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get all => 'Todos';
+
+  @override
+  String get gender => 'Gênero';
+
+  @override
+  String get origin => 'Origem';
+
+  @override
+  String get lastKnownLocation => 'Última Localização';
+
+  @override
+  String get episodeCount => 'Aparições em Episódios';
+
+  @override
+  String get male => 'Masculino';
+
+  @override
+  String get female => 'Feminino';
+
+  @override
+  String get genderless => 'Sem Gênero';
+
+  @override
+  String get generalInformation => 'Informações Gerais';
 }

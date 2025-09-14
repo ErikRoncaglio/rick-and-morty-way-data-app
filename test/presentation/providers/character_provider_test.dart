@@ -24,6 +24,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+          gender: 'Male',
+          originName: 'Earth (C-137)',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
         CharacterEntity(
           id: 2,
@@ -31,6 +35,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+          gender: 'Male',
+          originName: 'unknown',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
       ];
 
@@ -114,6 +122,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+          gender: 'Male',
+          originName: 'Earth (C-137)',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
       ];
 
@@ -124,6 +136,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+          gender: 'Male',
+          originName: 'unknown',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
       ];
 
@@ -202,6 +218,10 @@ void main() {
             status: 'Alive',
             species: 'Human',
             image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+            gender: 'Male',
+            originName: 'Earth (C-137)',
+            lastKnownLocation: 'Citadel of Ricks',
+            episodeCount: 51,
           ),
         ],
         'info': {
@@ -248,6 +268,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+          gender: 'Male',
+          originName: 'Earth (C-137)',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
       ];
 
@@ -285,6 +309,10 @@ void main() {
           status: 'Alive',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+          gender: 'Male',
+          originName: 'Earth (C-137)',
+          lastKnownLocation: 'Citadel of Ricks',
+          episodeCount: 51,
         ),
         CharacterEntity(
           id: 2,
@@ -292,6 +320,10 @@ void main() {
           status: 'Dead',
           species: 'Human',
           image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+          gender: 'Male',
+          originName: 'Earth',
+          lastKnownLocation: 'Earth',
+          episodeCount: 10,
         ),
       ];
 

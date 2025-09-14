@@ -70,7 +70,10 @@ class CharacterModel extends HiveObject {
       status: status,
       species: species,
       image: image,
+      gender: gender,
+      originName: originName,
+      lastKnownLocation: locationName,
+      episodeCount: episodes.length,
     );
   }
 }
-

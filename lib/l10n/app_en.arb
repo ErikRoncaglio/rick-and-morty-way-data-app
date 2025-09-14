@@ -25,5 +25,13 @@
   "dead": "Dead",
   "unknown": "Unknown",
   "name": "Name",
-  "all": "All"
+  "all": "All",
+  "gender": "Gender",
+  "origin": "Origin",
+  "lastKnownLocation": "Last Known Location",
+  "episodeCount": "Episode Appearances",
+  "male": "Male",
+  "female": "Female",
+  "genderless": "Genderless",
+  "generalInformation": "General Information"
 }

@@ -88,4 +88,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get all => 'All';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get origin => 'Origin';
+
+  @override
+  String get lastKnownLocation => 'Last Known Location';
+
+  @override
+  String get episodeCount => 'Episode Appearances';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get genderless => 'Genderless';
+
+  @override
+  String get generalInformation => 'General Information';
 }

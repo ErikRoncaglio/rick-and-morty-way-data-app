@@ -259,6 +259,54 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Todos'**
   String get all;
+
+  /// No description provided for @gender.
+  ///
+  /// In pt, this message translates to:
+  /// **'Gênero'**
+  String get gender;
+
+  /// No description provided for @origin.
+  ///
+  /// In pt, this message translates to:
+  /// **'Origem'**
+  String get origin;
+
+  /// No description provided for @lastKnownLocation.
+  ///
+  /// In pt, this message translates to:
+  /// **'Última Localização'**
+  String get lastKnownLocation;
+
+  /// No description provided for @episodeCount.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aparições em Episódios'**
+  String get episodeCount;
+
+  /// No description provided for @male.
+  ///
+  /// In pt, this message translates to:
+  /// **'Masculino'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In pt, this message translates to:
+  /// **'Feminino'**
+  String get female;
+
+  /// No description provided for @genderless.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sem Gênero'**
+  String get genderless;
+
+  /// No description provided for @generalInformation.
+  ///
+  /// In pt, this message translates to:
+  /// **'Informações Gerais'**
+  String get generalInformation;
 }
 
 class _AppLocalizationsDelegate
